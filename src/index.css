@@ -1,0 +1,592 @@
+/* ════════════════════════════════════════════════════════════════════
+   GINKGO — Geospatial Intelligence & Flood-Aware Planning Platform
+   Light-Theme-First Design System (Felt × CARTO × ArcGIS × Palantir)
+   Palette: White #FFFFFF, Black #111111, Primary Green #08A045
+   ════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ── Reset ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Design Tokens ─────────────────────────────────────────────────── */
+:root {
+  /* Brand Green */
+  --brand-green:       #08A045;
+  --brand-green-hover: #068337;
+  --brand-green-light: #E8F6ED;
+  --brand-green-subtle:#F2FAF5;
+
+  /* Surfaces & Backgrounds */
+  --bg-base:     #FFFFFF;
+  --bg-subtle:   #F7F8F7;
+  --bg-surface:  #FFFFFF;
+  --bg-elevated: #FFFFFF;
+  --bg-hover:    #F2F4F2;
+  --bg-active:   #E8EBE8;
+
+  /* Borders */
+  --border:      #E5E7EB;
+  --border-subtle: #ECEEED;
+  --border-strong: #D1D5DB;
+
+  /* Text Colors */
+  --text-primary:   #111111;
+  --text-secondary: #555555;
+  --text-muted:     #888888;
+  --text-disabled:  #BBBBBB;
+
+  /* Semantic Risk Colors (Restrained) */
+  --risk-low-text:    #15803D;
+  --risk-low-bg:      #ECFDF5;
+  --risk-low-border:  #A7F3D0;
+
+  --risk-mod-text:    #D97706;
+  --risk-mod-bg:      #FFFBEB;
+  --risk-mod-border:  #FDE68A;
+
+  --risk-high-text:   #DC2626;
+  --risk-high-bg:     #FEF2F2;
+  --risk-high-border: #FECACA;
+
+  /* Zone Colors (Malaysian Planning) */
+  --zone-r1: #4ADE80;
+  --zone-r2: #22C55E;
+  --zone-r3: #16A34A;
+  --zone-c1: #FBBF24;
+  --zone-c2: #F59E0B;
+  --zone-a:  #84CC16;
+  --zone-gi: #08A045;
+  --zone-ut: #64748B;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radius */
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 8px;
+  --r-xl: 12px;
+  --r-full: 9999px;
+
+  /* Shadows (Calm & Subtle) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.10), 0 4px 10px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --t-fast: 120ms ease;
+  --t-mid:  200ms ease;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Global Layout ─────────────────────────────────────────────────── */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+.main-shell {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Top Navigation Bar ────────────────────────────────────────────── */
+.top-nav {
+  height: 52px;
+  background: var(--bg-base);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  flex-shrink: 0;
+  z-index: 40;
+}
+
+.top-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.brand-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--brand-green);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+}
+
+.breadcrumb-tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.top-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Left Sidebar Navigation (Compact & Calm) ──────────────────────── */
+.left-nav {
+  width: 60px;
+  background: var(--bg-subtle);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  flex-shrink: 0;
+  z-index: 30;
+  transition: width 0.2s ease;
+}
+
+.left-nav.expanded {
+  width: 210px;
+  align-items: stretch;
+  padding: 12px 10px;
+}
+
+.left-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.left-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  transition: all var(--t-fast);
+}
+
+.left-nav-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.left-nav-item.active {
+  background: var(--brand-green-light);
+  color: var(--brand-green);
+  font-weight: 600;
+}
+
+.left-nav-icon {
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--r-md);
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--t-fast);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: var(--brand-green);
+  color: #FFFFFF;
+  border-color: var(--brand-green);
+}
+.btn-primary:hover {
+  background: var(--brand-green-hover);
+  border-color: var(--brand-green-hover);
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+.btn-secondary:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+}
+
+.btn-subtle {
+  background: var(--brand-green-light);
+  color: var(--brand-green);
+  border-color: transparent;
+}
+.btn-subtle:hover {
+  background: #DCF2E4;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: transparent;
+}
+.btn-ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.btn-sm { padding: 4px 8px; font-size: 11px; }
+.btn-lg { padding: 10px 18px; font-size: 13px; }
+
+/* ── Badges & Chips ────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.badge-low {
+  background: var(--risk-low-bg);
+  color: var(--risk-low-text);
+  border: 1px solid var(--risk-low-border);
+}
+.badge-mod {
+  background: var(--risk-mod-bg);
+  color: var(--risk-mod-text);
+  border: 1px solid var(--risk-mod-border);
+}
+.badge-high {
+  background: var(--risk-high-bg);
+  color: var(--risk-high-text);
+  border: 1px solid var(--risk-high-border);
+}
+
+/* ── Spatial Map Workspace Layout (Felt × CARTO) ───────────────────── */
+.workspace-layout {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 52px);
+  width: 100%;
+  overflow: hidden;
+  background: #F8FAF8;
+}
+
+/* Collapsible Left Layer Panel (220px) */
+.layer-panel {
+  width: 240px;
+  background: var(--bg-base);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 20;
+}
+
+.layer-panel-header {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.layer-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+.layer-item:hover {
+  background: var(--bg-subtle);
+}
+
+/* Center Map Canvas (Dominant 65–75%) */
+.map-canvas-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #EDF1ED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating Felt-like Map Controls */
+.map-float-top-left {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-search-input {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: var(--text-primary);
+  width: 190px;
+  outline: none;
+}
+.map-search-input:focus {
+  border-color: var(--brand-green);
+}
+
+.map-toolbar-left {
+  position: absolute;
+  top: 60px;
+  left: 14px;
+  z-index: 15;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.map-tool-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all var(--t-fast);
+}
+.map-tool-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.map-tool-btn.active {
+  background: var(--brand-green-light);
+  color: var(--brand-green);
+}
+
+.map-float-bottom {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.map-status-pill {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xs);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  pointer-events: auto;
+}
+
+/* Right Planning Intelligence Panel (360px) */
+.intel-panel {
+  width: 380px;
+  background: var(--bg-base);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.intel-panel-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.intel-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Analytical Typography & Cards ─────────────────────────────────── */
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.indicator-hero {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.indicator-number {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.indicator-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.finding-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 10px 12px;
+  transition: border-color var(--t-fast);
+}
+.finding-card:hover {
+  border-color: var(--border-strong);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+}
+
+/* ── Scrollbars ────────────────────────────────────────────────────── */
+.scroll-y {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #D1D5DB transparent;
+}
+.scroll-y::-webkit-scrollbar { width: 5px; }
+.scroll-y::-webkit-scrollbar-track { background: transparent; }
+.scroll-y::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 4px;
+}
+
+/* ── Animations ────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease forwards;
+}
